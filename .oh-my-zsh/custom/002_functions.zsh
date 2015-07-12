@@ -37,7 +37,6 @@ function crun() {
 # open man page with bwana
 # Requires http://www.bruji.com/bwana/
 # `manu` means man-ui
-# TODO: PR pending at https://github.com/caskroom/homebrew-cask/pull/12563
 function manu() {
     open "man:$1"
 }
