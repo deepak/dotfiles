@@ -93,63 +93,8 @@ source $ZSH/oh-my-zsh.sh
 #### PERSONAL CONFIG #######################################
 ############################################################
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# TODO: issue at https://github.com/robbyrussell/oh-my-zsh/issues/4153
-alias b='brew'
-alias cw='cd ~/Code/work'
-alias statuspost='pg_ctl status -D /usr/local/var/postgres -s'
-
-# functions
-
-function update_lappy() {
-    brew update
-    brew upgrade
-    brew cleanup
-    upgrade_oh_my_zsh
-}
-
-function mirror_work_heroku_db() {
-    cw
-    heroku pg:backups capture
-    curl -o latest.dump `heroku pg:backups public-url`
-    pg_restore --verbose --clean --no-acl --no-owner -h localhost -U deepak -d emami_backup latest.dump
-}
-
-# eg. crun hello,
-# will execute:
-# cc -Wall    hello.c   -o hello
-function crun() {
-    make $1 CFLAGS='-Wall'
-    ./$1
-}
-
-# open man page with bwana
-# Requires http://www.bruji.com/bwana/
-# `manu` means man-ui
-# TODO: PR pending at https://github.com/caskroom/homebrew-cask/pull/12563
-function manu() {
-    open "man:$1"
-}
-
-function github_dotfiles() {
-    mkdir ~/Code/forks/deepak-dotfiles/.oh-my-zsh
-    cp ~/.zshrc ~/Code/forks/deepak-dotfiles/
-    cp -r ~/.oh-my-zsh/custom ~/Code/forks/deepak-dotfiles/.oh-my-zsh
-    cd ~/Code/forks/deepak-dotfiles
-    gst # git status
-}
-
-# file permissions
-
-# TODO: issue at https://github.com/robbyrussell/oh-my-zsh/issues/4151
-if [[ -f ~/.cloudapp ]]; then
-    chmod 600 ~/.cloudapp;
-fi
+# add personal config to
+# $ZSH_CUSTOM ie. ~/.oh-my-zsh/custom
+# with a zsh file extension.
+# use filename prefix like 005_some.zsh
+# to force loading order.
