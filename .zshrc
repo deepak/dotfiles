@@ -98,3 +98,6 @@ source $ZSH/oh-my-zsh.sh
 # with a zsh file extension.
 # use filename prefix like 005_some.zsh
 # to force loading order.
+
+# override plugins/git
+alias gsu='git submodule update --init --recursive'
